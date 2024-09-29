@@ -13,7 +13,7 @@ DBに登録されているタスクをSELECT文で取得して、コンソール
 
 ## コンソールアプリの使い方
 
-1. `ConsoleConnectionSql\bin\Debug\net8.0`配下にあるConsoleAppSQL.exeを実行します。
+1. `ConsoleConnectionSql\bin\Debug\net8.0`配下にある`ConsoleAppSQL.exe`を実行します。
 2. 「タスクの追加」を実施したい場合は「1」、「タスク一覧の取得」を実施したい場合は「2」をそれぞれ入力する。※半角で入力する
 
 ### タスクの追加
