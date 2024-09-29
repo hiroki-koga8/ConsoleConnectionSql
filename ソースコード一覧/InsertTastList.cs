@@ -17,7 +17,8 @@ public class InsertTastList
 		using (SqlCommand command = new SqlCommand(insertSql, connection))
 		{
 			Console.WriteLine("必須：タスク名を入力してください。※未入力の場合は「未入力」として処理します。");
-			var taskName = Console.ReadLine() ?? "未入力";
+			var taskValue = Console.ReadLine();
+			var taskName = taskValue == string.Empty ? "未入力" : taskValue;
 
 			Console.WriteLine("必須：タスクの開始日をyyyy/MM/dd形式で入力してください。");
 			var startDate = ReadDateTime(false);
@@ -26,9 +27,9 @@ public class InsertTastList
 			var endDate = ReadDateTime(true);
 
 			Console.WriteLine("タスクの内容を入力してください。");
-			var contents = Console.ReadLine() ?? string.Empty;
+			var contents = Console.ReadLine();
 
-			Console.WriteLine("タスクの状態を選択してください。※未入力の場合は「未着手」として処理します。\br次の数値を入力【 [0]：未着手 [1]：処理中 [2]：完了】");
+			Console.WriteLine("タスクの状態を選択してください。※未入力の場合は「未着手」として処理します。\n次の数値を入力【 [0]：未着手 [1]：処理中 [2]：完了】");
 			var status = GetStatus();
 
 			Console.WriteLine("必須：タスクの予定工数を数値で入力してください。");
@@ -39,7 +40,7 @@ public class InsertTastList
 			var deviation = CalculateDeviation(planManHour, resultManHour);
 
 			Console.WriteLine("備考を入力してください。");
-			var note = Console.ReadLine() ?? string.Empty;
+			var note = Console.ReadLine();
 
 			// パラメータを設定
 			command.Parameters.AddWithValue("@Value1", taskName); 
@@ -69,7 +70,7 @@ public class InsertTastList
 		while(true)
 		{
 			var dateStr = Console.ReadLine();
-			if (dateStr == null && isNotRequired)
+			if (dateStr == string.Empty && isNotRequired)
 			{
 				date = DateTime.MaxValue;
 				break;
@@ -95,7 +96,7 @@ public class InsertTastList
 		decimal result = 0;
 		while (true) {
 			var str = Console.ReadLine();
-			if(str == null && isNotRequired)
+			if(str == string.Empty && isNotRequired)
 			{
 				break;
 			}
