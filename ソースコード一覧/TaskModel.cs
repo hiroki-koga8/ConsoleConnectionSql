@@ -6,6 +6,11 @@
 public class TaskModel
 {
 	/// <summary>
+	/// ID
+	/// </summary>
+	[DisplayName("ID")]
+	public int Id { get; set; }
+	/// <summary>
 	/// タスク名
 	/// </summary>
 	[DisplayName("タスク")]
@@ -46,6 +51,7 @@ public class TaskModel
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
+	/// <param name="id">タスクのID</param>
 	/// <param name="taskName">タスク名</param>
 	/// <param name="startDate">開始日</param>
 	/// <param name="endDate">終了日</param>
@@ -56,6 +62,7 @@ public class TaskModel
 	/// <param name="deviation">予実乖離値</param>
 	/// <param name="note">備考</param>
 	public TaskModel(
+		int id,
 		string taskName,
 		string startDate,
 		string endDate,
@@ -66,6 +73,7 @@ public class TaskModel
 		double deviation,
 		string note)
 	{
+		Id = id;
 		TaskName = taskName;
 		StartDate = startDate;
 		EndDate = endDate;

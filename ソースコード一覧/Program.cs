@@ -5,8 +5,8 @@ class Program
 {
 	static void Main()
 	{
-		// DB接続文字列 ※実際には作成したDBの接続文字列を指定しています。
-		string connectionString = "Data Source=localhost;Initial Catalog=master;User ID=YourName;Password=YourPassword"; // YourName = User名 YourPassword = パスワード
+		// 接続文字列
+		//string connectionString = "Data Source=localhost;Initial Catalog=master;User ID=YourName;Password=YourPassword"; // YourName = User名 YourPassword = パスワード
 
 		// 接続成功時
 		try
@@ -51,11 +51,21 @@ class Program
 	/// <param name="connection">SqlConnection</param>
 	private static void TaskGetProcess(SqlConnection connection)
 	{
-		Console.WriteLine("実施する操作を次の数値から選択してください。\n【1】:タスク一覧を表示【2】:Excelファイルにして出力する");
+		Console.WriteLine("実施する操作を次の数値から選択してください。\n【1】:タスク一覧の表示、更新【2】:タスク一覧をExcelファイルに出力");
 		var consoleValue = GetConsoleValue();
 		if (consoleValue == "1")
 		{
-			DiplayTaskList.DisplayTaskList(connection);
+			while (true)
+			{
+				DiplayTaskList.DisplayTaskList(connection);
+
+				Console.WriteLine("表示されているタスクを更新する場合は1を入力してください");
+
+				if (GetConsoleValue() == "1")
+				{
+					UpdateTask.UpdateTaskItem(connection);
+				}
+			}
 		}
 		else if (consoleValue == "2")
 		{

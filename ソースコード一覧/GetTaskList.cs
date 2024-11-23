@@ -23,6 +23,7 @@ public class GetTaskList
 				while (reader.Read())
 				{
 					var task = new TaskModel(
+						reader.GetInt32(0),
 						reader.GetString(1),
 						reader.GetDateTime(2).ToString("yyyy/MM/dd"),
 						SqlDataReaderExtensions.GetDateToyyyyMMdd(reader, 3),
